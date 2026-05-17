@@ -60,22 +60,23 @@ public class GuiaDespachoController {
                         return ResponseEntity.badRequest().body("Debe proporcionar un atributo de búsqueda valido");
                 }else if(num_null > 1) {
                         return ResponseEntity.badRequest().body("Solo se permite un atributo de búsqueda a la vez");
-                }else if(codigoTracking != null) {
+                }else if((params.size() - num_null) == 1){
+                        if(codigoTracking != null) {
                         log.info(">>> Buscando guia de despacho por codigo de tracking: {}", codigoTracking);
                         return guiaDespachoService.getByCodigoTracking(codigoTracking)
                                 .map(ResponseEntity::ok)
                                 .orElse(ResponseEntity.notFound().build());
-                }else if(idAdmision != null){
+                        }else if(idAdmision != null){
                         log.info(">>> Buscando guia de despacho por id de admision: {}", idAdmision);
                         return guiaDespachoService.getByIdAdmision(Long.valueOf(idAdmision))
                                 .map(ResponseEntity::ok)
                                 .orElse(ResponseEntity.notFound().build());
-                }else if(estadoMaestro != null){
-                        log.info(">>> Buscando guia de despacho por id de admision: {}", idAdmision);
+                        }else if(estadoMaestro != null){
+                        log.info(">>> Buscando guia de despacho por estado maestro: {}", estadoMaestro);
                         return ResponseEntity.ok(guiaDespachoService.getByEstadoMaestro(estadoMaestro));
-                }else{
-                        return ResponseEntity.internalServerError().body("Error en el URL query");
+                        }
                 }
+                return ResponseEntity.internalServerError().body("Error en el URL query");
         }
 
         
