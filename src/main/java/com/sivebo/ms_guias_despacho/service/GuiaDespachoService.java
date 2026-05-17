@@ -2,7 +2,6 @@ package com.sivebo.ms_guias_despacho.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.sivebo.ms_guias_despacho.dto.GuiaDespachoRequestDTO;
 import com.sivebo.ms_guias_despacho.dto.GuiaDespachoResponseDTO;
 import com.sivebo.ms_guias_despacho.model.GuiaDespacho;
+import com.sivebo.ms_guias_despacho.repository.EstadoMaestroRepository;
 import com.sivebo.ms_guias_despacho.repository.GuiaDespachoRepository;
 import com.sivebo.ms_guias_despacho.utils.WebClientUtil;
 
@@ -24,6 +24,7 @@ public class GuiaDespachoService {
         
         
         private final GuiaDespachoRepository guiaDespachoRepository;
+        private final EstadoMaestroRepository estadoMaestroRepository;
         
         private final WebClientUtil webClientUtil;
 
@@ -34,15 +35,14 @@ public class GuiaDespachoService {
                 return new GuiaDespachoResponseDTO(
                         guiaDespacho.getId(),
                         guiaDespacho.getCodigoTracking(),
-                        guiaDespacho.getIdAdmision()
+                        guiaDespacho.getIdAdmision(),
+                        guiaDespacho.getIdEstadoMaestro()
                 );
         }
         
         public List<GuiaDespachoResponseDTO> getAll() {
                 return guiaDespachoRepository.findAll()
-                        .stream()
-                        .map(this::mapToDTO)
-                        .collect(Collectors.toList());
+                        .stream().map(this::mapToDTO).toList();
         }
         
         public Optional<GuiaDespachoResponseDTO> getById(Long id) {
@@ -57,13 +57,19 @@ public class GuiaDespachoService {
                 return guiaDespachoRepository.findByIdAdmision(idAdmision).map(this::mapToDTO);
         }
 
+        public List<GuiaDespachoResponseDTO> getByEstadoMaestro(String estadoMaestro){
+                return guiaDespachoRepository.findByEstadoMaestro(estadoMaestro)
+                        .stream().map(this::mapToDTO).toList();
+        }
+
         public GuiaDespachoResponseDTO create(GuiaDespachoRequestDTO dto){
                 webClientUtil.validateMicroServiceById(dto.getIdAdmision(), "admisiones", admisionWebClient);
                 return mapToDTO(guiaDespachoRepository.save(
                         new GuiaDespacho(
                         null,
                         dto.getCodigoTracking(),
-                        dto.getIdAdmision()
+                        dto.getIdAdmision(),
+                        estadoMaestroRepository.GetIdByTipoEstado("RECIBIDO")
                         )
                 ));
         }

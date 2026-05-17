@@ -2,6 +2,8 @@ package com.sivebo.ms_guias_despacho.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,20 +16,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "guia_despacho")
-public class GuiaDespacho {
+@Table(name = "estado_maestro")
+public class EstadoMaestro {
         
         @Id
         @GeneratedValue(strategy=GenerationType.IDENTITY)
         Long id;
 
-        @Column(name = "codigo_tracking", nullable = false, unique = true, length = 13)
-        String codigoTracking;
-
-        @Column(name = "id_admision", nullable = false)
-        Long idAdmision;
-
-        @Column(name="id_estado_maestro", nullable=false)
-        Long idEstadoMaestro;
-
+        @Column(name = "tipo_estado", nullable=false, unique=true)
+        @Enumerated(EnumType.STRING)
+        TipoEstado tipoEstado;
 }

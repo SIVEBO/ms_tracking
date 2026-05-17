@@ -17,4 +17,7 @@ public class GuiaDespachoRequestDTO{
 
         @NotNull(message="El id de admision es obligatorio")
         Long idAdmision;
+
+        @NotNull(message="El id de estado maestro es obligatorio")
+        Long idEstadoMaestro;
 }

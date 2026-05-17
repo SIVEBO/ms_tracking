@@ -12,4 +12,5 @@ public class GuiaDespachoResponseDTO {
         Long id;
         String codigoTracking;
         Long idAdmision;
+        Long idEstadoMaestro;
 }
