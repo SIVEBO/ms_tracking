@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsGuiasDespachoApplication {
+public class MsTrackingApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MsGuiasDespachoApplication.class, args);
-	}
-
+        public static void main(String[] args) {
+                SpringApplication.run(MsTrackingApplication.class, args);
+        }
 }
