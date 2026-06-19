@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.model;
+package com.sivebo.ms_tracking.model;
 
 public enum TipoEstado {
         RECIBIDO, TRANSITO, ENTREGADO, DEVUELTO

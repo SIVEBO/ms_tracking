@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.exception;
+package com.sivebo.ms_tracking.exception;
 
 import java.util.HashMap;
 import java.util.Map;

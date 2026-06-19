@@ -1,10 +1,10 @@
-package com.sivebo.ms_guias_despacho.repository;
+package com.sivebo.ms_tracking.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.stereotype.Repository;
 
-import com.sivebo.ms_guias_despacho.model.EstadoMaestro;
+import com.sivebo.ms_tracking.model.EstadoMaestro;
 
 @Repository
 public interface EstadoMaestroRepository extends JpaRepository<EstadoMaestro, Object>{

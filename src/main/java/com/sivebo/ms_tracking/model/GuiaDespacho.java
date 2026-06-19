@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.model;
+package com.sivebo.ms_tracking.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

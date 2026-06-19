@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.controller;
+package com.sivebo.ms_tracking.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sivebo.ms_guias_despacho.dto.GuiaDespachoRequestDTO;
-import com.sivebo.ms_guias_despacho.dto.GuiaDespachoResponseDTO;
-import com.sivebo.ms_guias_despacho.service.GuiaDespachoService;
+import com.sivebo.ms_tracking.dto.GuiaDespachoRequestDTO;
+import com.sivebo.ms_tracking.dto.GuiaDespachoResponseDTO;
+import com.sivebo.ms_tracking.service.GuiaDespachoService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

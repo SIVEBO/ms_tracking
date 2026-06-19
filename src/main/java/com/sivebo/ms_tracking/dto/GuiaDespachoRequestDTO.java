@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.dto;
+package com.sivebo.ms_tracking.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

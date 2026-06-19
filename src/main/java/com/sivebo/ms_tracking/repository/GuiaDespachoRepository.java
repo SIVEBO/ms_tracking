@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.repository;
+package com.sivebo.ms_tracking.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
 
-import com.sivebo.ms_guias_despacho.model.GuiaDespacho;
+import com.sivebo.ms_tracking.model.GuiaDespacho;
 
 public interface GuiaDespachoRepository extends JpaRepository<GuiaDespacho, Object>{
         

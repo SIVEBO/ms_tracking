@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.dto;
+package com.sivebo.ms_tracking.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

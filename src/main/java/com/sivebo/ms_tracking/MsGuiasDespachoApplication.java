@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho;
+package com.sivebo.ms_tracking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

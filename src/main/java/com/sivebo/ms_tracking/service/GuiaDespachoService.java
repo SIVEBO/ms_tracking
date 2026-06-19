@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.service;
+package com.sivebo.ms_tracking.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.sivebo.ms_guias_despacho.dto.GuiaDespachoRequestDTO;
-import com.sivebo.ms_guias_despacho.dto.GuiaDespachoResponseDTO;
-import com.sivebo.ms_guias_despacho.model.GuiaDespacho;
-import com.sivebo.ms_guias_despacho.repository.EstadoMaestroRepository;
-import com.sivebo.ms_guias_despacho.repository.GuiaDespachoRepository;
-import com.sivebo.ms_guias_despacho.utils.WebClientUtil;
+import com.sivebo.ms_tracking.dto.GuiaDespachoRequestDTO;
+import com.sivebo.ms_tracking.dto.GuiaDespachoResponseDTO;
+import com.sivebo.ms_tracking.model.GuiaDespacho;
+import com.sivebo.ms_tracking.repository.EstadoMaestroRepository;
+import com.sivebo.ms_tracking.repository.GuiaDespachoRepository;
+import com.sivebo.ms_tracking.utils.WebClientUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sivebo</groupId>
-	<artifactId>ms_guias_despacho</artifactId>
+	<artifactId>ms_tracking</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms_guias_despacho</name>
+	<name>ms_tracking</name>
 	<description/>
 	<url/>
 	<licenses>

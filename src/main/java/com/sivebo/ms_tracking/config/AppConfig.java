@@ -1,4 +1,4 @@
-package com.sivebo.ms_guias_despacho.config;
+package com.sivebo.ms_tracking.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
