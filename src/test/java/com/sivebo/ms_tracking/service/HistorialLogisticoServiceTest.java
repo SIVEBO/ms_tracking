@@ -18,8 +18,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.sivebo.ms_tracking.dto.HistorialLogisticoRequestDTO;
-import com.sivebo.ms_tracking.dto.HistorialLogisticoResponseDTO;
+import com.sivebo.ms_tracking.dto.request.HistorialLogisticoRequestDTO;
+import com.sivebo.ms_tracking.dto.response.HistorialLogisticoResponseDTO;
 import com.sivebo.ms_tracking.exception.MicroserviceValidationException;
 import com.sivebo.ms_tracking.model.EstadoMaestro;
 import com.sivebo.ms_tracking.model.GuiaDespacho;

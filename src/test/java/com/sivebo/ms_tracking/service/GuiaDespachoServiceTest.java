@@ -24,8 +24,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.sivebo.ms_tracking.dto.GuiaDespachoRequestDTO;
-import com.sivebo.ms_tracking.dto.GuiaDespachoResponseDTO;
+import com.sivebo.ms_tracking.dto.request.GuiaDespachoRequestDTO;
+import com.sivebo.ms_tracking.dto.response.GuiaDespachoResponseDTO;
 import com.sivebo.ms_tracking.exception.MicroserviceValidationException;
 import com.sivebo.ms_tracking.model.EstadoMaestro;
 import com.sivebo.ms_tracking.model.GuiaDespacho;
