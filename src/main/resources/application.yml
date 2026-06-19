@@ -17,7 +17,7 @@ spring:
           sql: true
 
 server:
-  port: 8093
+  port: 8004
 
 eureka:
   client:
@@ -37,4 +37,4 @@ logging:
 
 ms:
   admision:
-    url: ${MS_ADMISION_URL:http://localhost:8087}
+    url: ${MS_ADMISION_URL:http://localhost:8003}
