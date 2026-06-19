@@ -1,5 +1,7 @@
 package com.sivebo.ms_tracking.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,20 +16,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "guia_despacho")
+@Table(name = "GUIA_DESPACHO")
 public class GuiaDespacho {
-        
+
         @Id
-        @GeneratedValue(strategy=GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
 
-        @Column(name = "codigo_tracking", nullable = false, unique = true, length = 13)
+        @Column(name = "codigo_tracking", nullable = false, unique = true, length = 12)
         String codigoTracking;
 
         @Column(name = "id_admision", nullable = false)
         Long idAdmision;
 
-        @Column(name="id_estado_maestro", nullable=false)
-        Long idEstadoMaestro;
-
+        @Column(name = "fecha_creacion", nullable = false)
+        LocalDateTime fechaCreacion;
 }

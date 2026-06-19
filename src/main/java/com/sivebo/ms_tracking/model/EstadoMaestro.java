@@ -16,14 +16,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "estado_maestro")
+@Table(name = "ESTADO_MAESTRO")
 public class EstadoMaestro {
-        
+
         @Id
-        @GeneratedValue(strategy=GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
 
-        @Column(name = "tipo_estado", nullable=false, unique=true)
+        @Column(name = "nombre_estado", nullable = false, unique = true)
         @Enumerated(EnumType.STRING)
         TipoEstado tipoEstado;
+
+        @Column(name = "orden", nullable = false)
+        Integer orden;
 }

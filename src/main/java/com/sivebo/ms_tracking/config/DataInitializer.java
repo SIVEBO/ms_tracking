@@ -1,12 +1,14 @@
-package com.sivebo.ms_guias_despacho.config;
+package com.sivebo.ms_tracking.config;
+
+import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.sivebo.ms_guias_despacho.model.EstadoMaestro;
-import com.sivebo.ms_guias_despacho.model.TipoEstado;
-import com.sivebo.ms_guias_despacho.repository.EstadoMaestroRepository;
-import com.sivebo.ms_guias_despacho.repository.GuiaDespachoRepository;
+import com.sivebo.ms_tracking.model.EstadoMaestro;
+import com.sivebo.ms_tracking.model.TipoEstado;
+import com.sivebo.ms_tracking.repository.EstadoMaestroRepository;
+import com.sivebo.ms_tracking.repository.GuiaDespachoRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class DataInitializer implements CommandLineRunner{
+public class DataInitializer implements CommandLineRunner {
 
         private final GuiaDespachoRepository guiaDespachoRepository;
         private final EstadoMaestroRepository estadoMaestroRepository;
@@ -27,13 +29,14 @@ public class DataInitializer implements CommandLineRunner{
 
                 }
                 log.info(">>> Cargando estados maestros ...");
-                estadoMaestroRepository.save(new EstadoMaestro(null, TipoEstado.RECIBIDO));
-                estadoMaestroRepository.save(new EstadoMaestro(null, TipoEstado.TRANSITO));
-                estadoMaestroRepository.save(new EstadoMaestro(null, TipoEstado.ENTREGADO));
-                estadoMaestroRepository.save(new EstadoMaestro(null, TipoEstado.DEVUELTO));
-                
+                        estadoMaestroRepository.saveAll(List.of(
+                                new EstadoMaestro(null, TipoEstado.RECIBIDO,    1),
+                                new EstadoMaestro(null, TipoEstado.EN_TRANSITO, 2),
+                                new EstadoMaestro(null, TipoEstado.ENTREGADO,   3),
+                                new EstadoMaestro(null, TipoEstado.DEVUELTO,    4)
+                        ));
                 log.info(">>> Estados Maestros iniciales cargadas exitosamente.");
 
         }
-        
+
 }
