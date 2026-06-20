@@ -79,24 +79,24 @@ public class GuiaDespachoController {
         })
         @GetMapping("/buscar")
         public ResponseEntity<?> buscar(
-                @RequestParam(required = false) String codigo_tracking,
-                @RequestParam(required = false) String id_admision) {
+                @RequestParam(required = false) String codigoTracking,
+                @RequestParam(required = false) String idAdmision) {
 
-                long provided = Stream.of(codigo_tracking, id_admision)
+                long provided = Stream.of(codigoTracking, idAdmision)
                         .filter(Objects::nonNull).count();
 
                 if (provided == 0) {
                         return ResponseEntity.badRequest().body("Debe proporcionar un atributo de búsqueda válido");
                 } else if (provided > 1) {
                         return ResponseEntity.badRequest().body("Solo se permite un atributo de búsqueda a la vez");
-                } else if (codigo_tracking != null) {
-                        log.info(">>> Buscando guía por código de tracking: {}", codigo_tracking);
-                        return guiaDespachoService.getByCodigoTracking(codigo_tracking)
+                } else if (codigoTracking != null) {
+                        log.info(">>> Buscando guía por código de tracking: {}", codigoTracking);
+                        return guiaDespachoService.getByCodigoTracking(codigoTracking)
                                 .map(ResponseEntity::ok)
                                 .orElse(ResponseEntity.notFound().build());
                 } else {
-                        log.info(">>> Buscando guía por id de admisión: {}", id_admision);
-                        return guiaDespachoService.getByIdAdmision(Long.valueOf(id_admision))
+                        log.info(">>> Buscando guía por id de admisión: {}", idAdmision);
+                        return guiaDespachoService.getByIdAdmision(Long.valueOf(idAdmision))
                                 .map(ResponseEntity::ok)
                                 .orElse(ResponseEntity.notFound().build());
                 }

@@ -13,34 +13,34 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class WebClientUtil {
 
-        public void validateMicroServiceById(Long id, String name_service, WebClient webClient) {
+        public void validateMicroServiceById(Long id, String nameService, WebClient webClient) {
                 try {
                         webClient.get()
-                                .uri("/api/v1/" + name_service + "/{id}", id)
+                                .uri("/api/v1/" + nameService + "/{id}", id)
                                 .retrieve()
                                 .bodyToMono(String.class)
                                 .block();
-                        log.info(">>> {} {} validado correctamente (WebClient)", name_service, id);
+                        log.info(">>> {} {} validado correctamente (WebClient)", nameService, id);
                 } catch (WebClientResponseException.NotFound e) {
                         throw new MicroserviceValidationException(
-                                name_service + " con id " + id + " no existe en el microservicio.");
+                                nameService + " con id " + id + " no existe en el microservicio.");
                 } catch (Exception e) {
                         throw new MicroserviceUnavailableException(
                                 "No se pudo conectar con el microservicio: " + e.getMessage());
                 }
         }
 
-        public void validateMicroServiceByQuery(String name_service, String query, String value, WebClient webClient) {
+        public void validateMicroServiceByQuery(String nameService, String query, String value, WebClient webClient) {
                 try {
                         webClient.get()
-                                .uri("/api/v1/" + name_service + "/search?" + query + "=" + value)
+                                .uri("/api/v1/" + nameService + "/search?" + query + "=" + value)
                                 .retrieve()
                                 .bodyToMono(String.class)
                                 .block();
-                        log.info(">>> {} {} validado correctamente (WebClient)", name_service, value);
+                        log.info(">>> {} {} validado correctamente (WebClient)", nameService, value);
                 } catch (WebClientResponseException.NotFound e) {
                         throw new MicroserviceValidationException(
-                                name_service + " con " + query + "=" + value + " no existe en el microservicio.");
+                                nameService + " con " + query + "=" + value + " no existe en el microservicio.");
                 } catch (Exception e) {
                         throw new MicroserviceUnavailableException(
                                 "No se pudo conectar con el microservicio: " + e.getMessage());
