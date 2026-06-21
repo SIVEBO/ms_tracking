@@ -84,6 +84,7 @@ public class GuiaDespachoService {
 
         @Transactional
         public Boolean delete(Long id) {
+                historialRepository.deleteAll(historialRepository.findByGuiaIdOrderByFechaHoraAsc(id));
                 guiaDespachoRepository.deleteById(id);
                 return !guiaDespachoRepository.existsById(id);
         }

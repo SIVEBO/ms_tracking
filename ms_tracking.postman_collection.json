@@ -1,0 +1,120 @@
+{
+  "info": {
+    "name": "ms_tracking",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "SIVEBO ms_tracking — todos los endpoints la via API gateway ({{baseUrl}}). Crear guia necesita la existencia de admision (idAdmision); correr ms_admision primero. Borrar guia apunta un DESECHAR guia para que primera guia sobreviva para ms_paquetes / ms_portal downstream."
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "idAdmision", "value": "1" },
+    { "key": "idGuia", "value": "1" },
+    { "key": "idGuiaTmp", "value": "99" },
+    { "key": "idHistorial", "value": "1" },
+    { "key": "codigoTracking", "value": "TRACK0000001" }
+  ],
+  "item": [
+    {
+      "name": "GuiaDespachoController",
+      "item": [
+        {
+          "name": "Crear guia",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"codigoTracking\": \"{{codigoTracking}}\",\n  \"idAdmision\": {{idAdmision}}\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/api/v1/guias", "host": ["{{baseUrl}}"], "path": ["api","v1","guias"] }
+          },
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": [
+              "var j; try { j = pm.response.json(); } catch (e) { j = null; }",
+              "if (j && j.id !== undefined && j.id !== null) pm.collectionVariables.set(\"idGuia\", j.id);",
+              "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201]); });"
+            ] } }
+          ]
+        },
+        {
+          "name": "Listarar guias",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/guias", "host": ["{{baseUrl}}"], "path": ["api","v1","guias"] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200]); });" ] } } ]
+        },
+        {
+          "name": "Obtener guia por id",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/guias/{{idGuia}}", "host": ["{{baseUrl}}"], "path": ["api","v1","guias","{{idGuia}}"] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200]); });" ] } } ]
+        },
+        {
+          "name": "Buscar guia por codigoTracking",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/guias/buscar?codigoTracking={{codigoTracking}}", "host": ["{{baseUrl}}"], "path": ["api","v1","guias","buscar"], "query": [ { "key": "codigoTracking", "value": "{{codigoTracking}}" } ] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200]); });" ] } } ]
+        }
+      ]
+    },
+    {
+      "name": "HistorialLogisticoController",
+      "item": [
+        {
+          "name": "Crear historial",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"idGuia\": {{idGuia}},\n  \"idEstado\": 1,\n  \"idSucursalActual\": 1,\n  \"idUsuario\": 1,\n  \"fechaHora\": \"2026-06-21T10:00:00\",\n  \"comentario\": \"Recibido en sucursal origen\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/api/v1/historial", "host": ["{{baseUrl}}"], "path": ["api","v1","historial"] }
+          },
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": [
+              "var j; try { j = pm.response.json(); } catch (e) { j = null; }",
+              "if (j && j.id !== undefined && j.id !== null) pm.collectionVariables.set(\"idHistorial\", j.id);",
+              "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201]); });"
+            ] } }
+          ]
+        },
+        {
+          "name": "Listar historial",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/historial", "host": ["{{baseUrl}}"], "path": ["api","v1","historial"] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200]); });" ] } } ]
+        },
+        {
+          "name": "Obtener historial por guia",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/historial/{{idGuia}}", "host": ["{{baseUrl}}"], "path": ["api","v1","historial","{{idGuia}}"] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200]); });" ] } } ]
+        },
+        {
+          "name": "Estado actual por guia",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/historial/estado-actual/{{idGuia}}", "host": ["{{baseUrl}}"], "path": ["api","v1","historial","estado-actual","{{idGuia}}"] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200]); });" ] } } ]
+        }
+      ]
+    },
+    {
+      "name": "Limpiar (destructivo - correr ultimo)",
+      "item": [
+        {
+          "name": "Borrar historial",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/historial/{{idHistorial}}", "host": ["{{baseUrl}}"], "path": ["api","v1","historial","{{idHistorial}}"] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200,204]); });" ] } } ]
+        },
+        {
+          "name": "Crear guia (throwaway for delete)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"codigoTracking\": \"TRACK0000002\",\n  \"idAdmision\": {{idAdmision}}\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/api/v1/guias", "host": ["{{baseUrl}}"], "path": ["api","v1","guias"] }
+          },
+          "event": [
+            { "listen": "test", "script": { "type": "text/javascript", "exec": [
+              "var j; try { j = pm.response.json(); } catch (e) { j = null; }",
+              "if (j && j.id !== undefined && j.id !== null) pm.collectionVariables.set(\"idGuiaTmp\", j.id);",
+              "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200,201]); });"
+            ] } }
+          ]
+        },
+        {
+          "name": "Borrar guia (throwaway)",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/api/v1/guias/{{idGuiaTmp}}", "host": ["{{baseUrl}}"], "path": ["api","v1","guias","{{idGuiaTmp}}"] } },
+          "event": [ { "listen": "test", "script": { "type": "text/javascript", "exec": [ "pm.test(\"status ok\", function () { pm.expect(pm.response.code).to.be.oneOf([200,204]); });" ] } } ]
+        }
+      ]
+    }
+  ]
+}

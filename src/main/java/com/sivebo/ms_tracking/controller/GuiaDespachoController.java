@@ -104,7 +104,7 @@ public class GuiaDespachoController {
 
         @Operation(
                 summary = "Registrar una guía de despacho",
-                description = "Crea una nueva guía y registra automáticamente el estado inicial RECIBIDO (RF-21)"
+                description = "Crea una nueva guía y registra automáticamente el estado inicial RECIBIDO"
         )
         @ApiResponses(value = {
                 @ApiResponse(responseCode = "201", description = "Guía creada exitosamente",

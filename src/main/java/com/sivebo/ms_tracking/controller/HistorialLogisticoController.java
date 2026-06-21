@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("api/v1/historial")
 @RequiredArgsConstructor
-@Tag(name = "Historial Logístico", description = "Registro y consulta del historial de estados de guías (RF-18, RF-19, RF-20)")
+@Tag(name = "Historial Logístico", description = "Registro y consulta del historial de estados de guías")
 public class HistorialLogisticoController {
 
         private final HistorialLogisticoService historialLogisticoService;
@@ -48,7 +48,7 @@ public class HistorialLogisticoController {
 
         @Operation(
                 summary = "Obtener estado actual de una guía",
-                description = "Retorna el último estado registrado para la guía indicada (RF-20). " +
+                description = "Retorna el último estado registrado para la guía indicada. " +
                         "El campo 'nombreEstado' es consumido por ms_portal"
         )
         @ApiResponses(value = {
@@ -67,7 +67,7 @@ public class HistorialLogisticoController {
 
         @Operation(
                 summary = "Historial cronológico de una guía",
-                description = "Retorna todos los cambios de estado de una guía ordenados por fecha ascendente (RF-19)"
+                description = "Retorna todos los cambios de estado de una guía ordenados por fecha ascendente"
         )
         @ApiResponses(value = {
                 @ApiResponse(responseCode = "200", description = "Historial obtenido exitosamente",
@@ -81,7 +81,7 @@ public class HistorialLogisticoController {
 
         @Operation(
                 summary = "Registrar cambio de estado",
-                description = "Agrega una nueva entrada al historial logístico de una guía (RF-18)"
+                description = "Agrega una nueva entrada al historial logístico de una guía"
         )
         @ApiResponses(value = {
                 @ApiResponse(responseCode = "201", description = "Estado registrado exitosamente",

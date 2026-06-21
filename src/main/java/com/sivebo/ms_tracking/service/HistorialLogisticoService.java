@@ -48,13 +48,13 @@ public class HistorialLogisticoService {
 
         @Transactional(readOnly = true)
         public List<HistorialLogisticoResponseDTO> getByGuiaId(Long guiaId) {
-                return historialRepository.findByGuia_IdOrderByFechaHoraAsc(guiaId)
+                return historialRepository.findByGuiaIdOrderByFechaHoraAsc(guiaId)
                         .stream().map(this::mapToDTO).toList();
         }
 
         @Transactional(readOnly = true)
         public Optional<HistorialLogisticoResponseDTO> getEstadoActual(Long guiaId) {
-                return historialRepository.findTopByGuia_IdOrderByFechaHoraDesc(guiaId)
+                return historialRepository.findTopByGuiaIdOrderByFechaHoraDesc(guiaId)
                         .map(this::mapToDTO);
         }
 

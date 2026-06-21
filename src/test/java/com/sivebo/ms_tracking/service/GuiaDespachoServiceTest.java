@@ -54,7 +54,7 @@ class GuiaDespachoServiceTest {
                 new EstadoMaestro(1L, TipoEstado.RECIBIDO, 1);
 
         @Test
-        void getAll_returnsAllMapped() {
+        void getAllReturnsAllMapped() {
                 when(guiaDespachoRepository.findAll()).thenReturn(List.of(GUIA));
 
                 List<GuiaDespachoResponseDTO> result = service.getAll();
@@ -68,7 +68,7 @@ class GuiaDespachoServiceTest {
         }
 
         @Test
-        void getById_found_returnsDTO() {
+        void getByIdFoundReturnsDTO() {
                 when(guiaDespachoRepository.findById(1L)).thenReturn(Optional.of(GUIA));
 
                 Optional<GuiaDespachoResponseDTO> result = service.getById(1L);
@@ -78,14 +78,14 @@ class GuiaDespachoServiceTest {
         }
 
         @Test
-        void getById_notFound_returnsEmpty() {
+        void getByIdNotFoundReturnsEmpty() {
                 when(guiaDespachoRepository.findById(99L)).thenReturn(Optional.empty());
 
                 assertTrue(service.getById(99L).isEmpty());
         }
 
         @Test
-        void getByCodigoTracking_found_returnsDTO() {
+        void getByCodigoTrackingFoundReturnsDTO() {
                 when(guiaDespachoRepository.findByCodigoTracking("ABC123456789"))
                         .thenReturn(Optional.of(GUIA));
 
@@ -96,7 +96,7 @@ class GuiaDespachoServiceTest {
         }
 
         @Test
-        void getByIdAdmision_found_returnsDTO() {
+        void getByIdAdmisionFoundReturnsDTO() {
                 when(guiaDespachoRepository.findByIdAdmision(10L)).thenReturn(Optional.of(GUIA));
 
                 Optional<GuiaDespachoResponseDTO> result = service.getByIdAdmision(10L);
@@ -106,7 +106,7 @@ class GuiaDespachoServiceTest {
         }
 
         @Test
-        void create_validRequest_savesGuiaAndHistorial() {
+        void createValidRequestSavesGuiaAndHistorial() {
                 GuiaDespachoRequestDTO dto = new GuiaDespachoRequestDTO("ABC123456789", 10L);
                 GuiaDespacho saved = new GuiaDespacho(1L, "ABC123456789", 10L, LocalDateTime.now());
 
@@ -127,7 +127,7 @@ class GuiaDespachoServiceTest {
         }
 
         @Test
-        void create_admisionNotFound_throwsMicroserviceValidationException() {
+        void createAdmisionNotFoundThrowsMicroserviceValidationException() {
                 GuiaDespachoRequestDTO dto = new GuiaDespachoRequestDTO("ABC123456789", 10L);
                 doThrow(new MicroserviceValidationException("admision no existe"))
                         .when(webClientUtil).validateMicroServiceById(eq(10L), anyString(), any(WebClient.class));
@@ -136,7 +136,7 @@ class GuiaDespachoServiceTest {
         }
 
         @Test
-        void create_recibidoMissing_throwsMicroserviceValidationException() {
+        void createRecibidoMissingThrowsMicroserviceValidationException() {
                 GuiaDespachoRequestDTO dto = new GuiaDespachoRequestDTO("ABC123456789", 10L);
                 doNothing().when(webClientUtil)
                         .validateMicroServiceById(anyLong(), anyString(), any(WebClient.class));
@@ -148,7 +148,7 @@ class GuiaDespachoServiceTest {
         }
 
         @Test
-        void delete_deletesAndReturnsTrue() {
+        void deleteDeletesAndReturnsTrue() {
                 doNothing().when(guiaDespachoRepository).deleteById(1L);
                 when(guiaDespachoRepository.existsById(1L)).thenReturn(false);
 

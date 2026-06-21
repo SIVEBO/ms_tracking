@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.sivebo.ms_tracking.model.EstadoMaestro;
 import com.sivebo.ms_tracking.model.TipoEstado;
 import com.sivebo.ms_tracking.repository.EstadoMaestroRepository;
-import com.sivebo.ms_tracking.repository.GuiaDespachoRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
-        private final GuiaDespachoRepository guiaDespachoRepository;
         private final EstadoMaestroRepository estadoMaestroRepository;
 
         @Override

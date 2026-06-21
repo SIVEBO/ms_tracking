@@ -50,7 +50,7 @@ class HistorialLogisticoServiceTest {
                 new HistorialLogistico(1L, GUIA, RECIBIDO, null, null, FECHA, null);
 
         @Test
-        void getAll_returnsAllMapped() {
+        void getAllReturnsAllMapped() {
                 when(historialRepository.findAll()).thenReturn(List.of(HISTORIAL));
 
                 List<HistorialLogisticoResponseDTO> result = service.getAll();
@@ -61,8 +61,8 @@ class HistorialLogisticoServiceTest {
         }
 
         @Test
-        void getByGuiaId_returnsChronologicalList() {
-                when(historialRepository.findByGuia_IdOrderByFechaHoraAsc(1L))
+        void getByGuiaIdReturnsChronologicalList() {
+                when(historialRepository.findByGuiaIdOrderByFechaHoraAsc(1L))
                         .thenReturn(List.of(HISTORIAL));
 
                 List<HistorialLogisticoResponseDTO> result = service.getByGuiaId(1L);
@@ -72,8 +72,8 @@ class HistorialLogisticoServiceTest {
         }
 
         @Test
-        void getEstadoActual_found_returnsDTO() {
-                when(historialRepository.findTopByGuia_IdOrderByFechaHoraDesc(1L))
+        void getEstadoActualFoundReturnsDTO() {
+                when(historialRepository.findTopByGuiaIdOrderByFechaHoraDesc(1L))
                         .thenReturn(Optional.of(HISTORIAL));
 
                 Optional<HistorialLogisticoResponseDTO> result = service.getEstadoActual(1L);
@@ -84,15 +84,15 @@ class HistorialLogisticoServiceTest {
         }
 
         @Test
-        void getEstadoActual_noHistory_returnsEmpty() {
-                when(historialRepository.findTopByGuia_IdOrderByFechaHoraDesc(99L))
+        void getEstadoActualNoHistoryReturnsEmpty() {
+                when(historialRepository.findTopByGuiaIdOrderByFechaHoraDesc(99L))
                         .thenReturn(Optional.empty());
 
                 assertTrue(service.getEstadoActual(99L).isEmpty());
         }
 
         @Test
-        void create_validRequest_savesAndReturnsDTO() {
+        void createValidRequestSavesAndReturnsDTO() {
                 HistorialLogisticoRequestDTO dto =
                         new HistorialLogisticoRequestDTO(1L, 1L, null, null, FECHA, "ok");
                 HistorialLogistico saved =
@@ -110,7 +110,7 @@ class HistorialLogisticoServiceTest {
         }
 
         @Test
-        void create_guiaNotFound_throwsMicroserviceValidationException() {
+        void createGuiaNotFoundThrowsMicroserviceValidationException() {
                 HistorialLogisticoRequestDTO dto =
                         new HistorialLogisticoRequestDTO(99L, 1L, null, null, FECHA, null);
                 when(guiaDespachoRepository.findById(99L)).thenReturn(Optional.empty());
@@ -119,7 +119,7 @@ class HistorialLogisticoServiceTest {
         }
 
         @Test
-        void create_estadoNotFound_throwsMicroserviceValidationException() {
+        void createEstadoNotFoundThrowsMicroserviceValidationException() {
                 HistorialLogisticoRequestDTO dto =
                         new HistorialLogisticoRequestDTO(1L, 99L, null, null, FECHA, null);
                 when(guiaDespachoRepository.findById(1L)).thenReturn(Optional.of(GUIA));
@@ -129,7 +129,7 @@ class HistorialLogisticoServiceTest {
         }
 
         @Test
-        void delete_deletesAndReturnsTrue() {
+        void deleteDeletesAndReturnsTrue() {
                 doNothing().when(historialRepository).deleteById(1L);
                 when(historialRepository.existsById(1L)).thenReturn(false);
 
