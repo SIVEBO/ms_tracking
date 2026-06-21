@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ms_tracking
+    name: ms-tracking
   datasource:
     url: ${DB_URL:jdbc:mariadb://localhost:3306/db_ms_tracking?createDatabaseIfNotExist=true}
     username: ${DB_USERNAME:root}
