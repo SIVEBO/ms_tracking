@@ -1,5 +1,0 @@
-{"properties": [{
-  "name": "ms.admision.url",
-  "type": "java.lang.String",
-  "description": "URL de microservicio admision"
-}]}

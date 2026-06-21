@@ -29,12 +29,8 @@ springdoc:
     enabled: true
   swagger-ui:
     enabled: true
-    path: /doc/swagger-ui.html
+    path: /swagger-ui.html
 
 logging:
   level:
     org.hibernate.orm.jdbc.bind: ${HIBERNATE_BIND_LOG:OFF}
-
-ms:
-  admision:
-    url: ${MS_ADMISION_URL:http://localhost:8083}
